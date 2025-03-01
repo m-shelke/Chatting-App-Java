@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Chatting App Java</string>
+
+    <string name="we_will_send_you_an">We will send you an</string>
+    <string name="continueBtn">Continue</string>
+    <string name="otp_verification">OTP Verification</string>
+    <string name="type_your_phone_number">Type your Phone Number</string>
+    <string name="on_this_mobile_number">On this mobile Number</string>
+    <string name="one_time_password">One Time Password</string>
+    <string name="phone_number">Phone Number..!!</string>
+    <string name="does_not_recieve_otp_resend"><b>Does Not Received OTP..?</b> <b>Resend..!!</b></string>
+    <string name="profele_information">Profile Information</string>
+    <string name="clicked">Clicked</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_chat">ChatActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>
