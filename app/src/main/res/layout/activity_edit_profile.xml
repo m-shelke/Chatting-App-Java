@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/main"
+    tools:context=".EditProfileActivity">
+
+    <RelativeLayout
+        android:id="@+id/toolbarRL"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <!-- ImageView: click to go back-->
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="6dp"
+            android:background="@android:color/transparent"
+            android:padding="10dp"/>
+
+        <!-- TextViw-To show toolbar title -->
+        <TextView
+            android:id="@+id/toolbarTitleTv"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toEndOf="@id/backBtn"
+            android:text="Profile Section"
+            android:textStyle="bold|normal"/>
+
+        <!-- View: To make Toolbar look separate from other UI-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <!--RelativeLayout:Profile layout with option to picked and show Image -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/profileRl"
+                android:layout_width="280dp"
+                android:layout_height="160dp"
+                android:layout_centerHorizontal="true">
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    app:cardCornerRadius="130dp"
+                    android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true">
+
+
+                <!--ShapeableImageView: to show image picked from Camera/Gallery or from Database -->
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/person"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <!--FloatingActionButton: to pick image from Camera/Gallery-->
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/profileImagePickFab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:src="@drawable/baseline_camera_alt_24"
+                    android:tint="@color/black"
+                    android:backgroundTint="#7A58B4"
+                    app:fabSize="mini" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/userNameView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your Name"
+                android:textStyle="bold"
+                android:layout_below="@id/profileRl"
+                android:layout_marginTop="10dp"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textColor="@color/black"/>
+
+
+            <!--TextInputLayout: Input User Name-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/nameTil"
+                style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+                android:layout_below="@id/userNameView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="Name"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:startIconDrawable="@drawable/baseline_person_24">
+
+                <EditText
+                    android:id="@+id/nameEd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+            >
+
+
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/updateProfileBtn"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/nameTil"-->
+<!--                android:layout_marginTop="25dp"-->
+<!--                app:cornerRadius="8dp"-->
+<!--                android:text="Update"/>-->
+
+            <!--MaterialButton: Click to verify otp send to phone number -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/verifyOtpBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cornerRadius="8dp"
+                android:text="Update"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:drawableLeft="@drawable/baseline_cloud_upload_24"
+                android:layout_below="@id/nameTil"
+                android:layout_marginTop="10dp"
+                android:minHeight="60dp"/>
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>
+

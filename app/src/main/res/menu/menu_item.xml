@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/profile"
-        android:title="Profile"/>
+    <item android:id="@+id/chat"
+        android:icon="@drawable/person"
+        android:title="Chat"/>
 
-    <item android:id="@+id/setting"
-        android:title="Setting"/>
+    <item android:id="@+id/bot"
+        android:title="Bot"/>
 
 </menu>

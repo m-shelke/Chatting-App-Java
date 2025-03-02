@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChattingActivity2">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toobar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="0dp"
+        android:background="#8E4242">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/myAppText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Helloe Fragment"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_below="@id/toobar"
+        app:tabTextColor="@color/white"
+        app:tabSelectedTextColor="@color/black"
+        app:tabIndicatorColor="@color/white"
+        android:backgroundTint="#B8A3A3"
+        app:tabIndicatorHeight="3dp"
+        android:layout_marginTop="0dp">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/chatItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chat"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/botItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bot"/>
+
+
+    </com.google.android.material.tabs.TabLayout>
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tabLayout"
+        android:layout_marginTop="0dp"/>
+
+</RelativeLayout>

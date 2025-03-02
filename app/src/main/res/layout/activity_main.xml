@@ -267,7 +267,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cornerRadius="8dp"
-                        android:text="Verify..!"
+                        android:textAlignment="center"
+                        android:gravity="center"
+                        android:text="Verify..!!"
+                        android:drawableLeft="@drawable/baseline_phonelink_ring_24"
                         android:layout_below="@id/otpTil"
                         android:layout_marginTop="10dp"
                         android:minHeight="60dp"/>

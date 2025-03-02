@@ -109,7 +109,7 @@ public class SetupProfileActivity extends AppCompatActivity {
                     sendDataForNewUser();
                     dialog.dismiss();
 
-                    Intent intent = new Intent(SetupProfileActivity.this,ChatActivity.class);
+                    Intent intent = new Intent(SetupProfileActivity.this,ChattingActivity2.class);
                     startActivity(intent);
                     finish();
                 }

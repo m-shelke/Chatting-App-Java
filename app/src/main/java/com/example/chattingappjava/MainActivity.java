@@ -241,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         if (FirebaseAuth.getInstance().getCurrentUser() != null){
-            Intent intent = new Intent(MainActivity.this,SetupProfileActivity.class);
+            Intent intent = new Intent(MainActivity.this, ChattingActivity2.class);
             startActivity(intent);
             finish();
         }
@@ -249,6 +249,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void startLoginOption(){
         //MainActivity to LoginActivity
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, SetupProfileActivity.class));
     }
 }

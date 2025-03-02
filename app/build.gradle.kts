@@ -66,6 +66,9 @@ dependencies {
 
     implementation ("com.squareup.picasso:picasso:2.8")
 
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+
+
     implementation ("com.github.mukeshsolanki.android-otpview-pinview:otpview:3.1.0")
 
     implementation ("de.hdodenhof:circleimageview:3.1.0")
@@ -77,8 +80,12 @@ dependencies {
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
 
+    // FirebaseUI for Cloud Firestore
+    implementation ("com.firebaseui:firebase-ui-firestore:8.0.2")
+
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
+
 
 
 }
