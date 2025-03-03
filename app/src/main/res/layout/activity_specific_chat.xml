@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SpecificChatActivity">
+
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_shape_toolbar"
+        android:backgroundTint="#D1DBFC"
+        android:layout_margin="10dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/toolbarBackBtn"-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="60dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                app:tint="@color/black"-->
+        <!--                android:src="@drawable/baseline_arrow_back_ios_24"/>-->
+
+
+        <!-- ImageView: click to go back-->
+        <ImageButton
+            android:id="@+id/toolbarBackBt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            android:background="@android:color/transparent"
+            android:layout_gravity="center_vertical"
+            app:tint="@color/black"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/userProfileBt"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/toolbarBackBtn"
+            app:cardCornerRadius="130dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/person"
+            android:layout_marginLeft="0dp"
+            android:layout_gravity="center"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp">
+
+            <TextView
+                android:id="@+id/userNameTv"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/black"
+                android:textStyle="bold|normal"
+                android:layout_toEndOf="@id/userProfileBt"
+                android:layout_centerVertical="true"
+                android:text="Inbox Name" />
+
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Online"
+                android:visibility="gone"
+                android:textColor="@android:color/holo_green_dark"
+                android:textSize="14sp"
+                android:textAlignment="textStart"
+                android:textStyle="bold|normal"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/recLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/toolBar">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/bottomLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/recLinear"
+        android:orientation="horizontal"
+        android:background="@drawable/bottom_shape"
+        android:weightSum="2">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardUseCompatPadding="true"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="10dp"
+            android:layout_weight="2"
+            android:padding="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/editMessage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:hint="Start Chat..!!"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:paddingStart="5dp"
+                        android:inputType="text"
+                        android:paddingEnd="1dp"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:background="@android:color/transparent"
+                        android:padding="5dp"
+                        android:textColorHint="@color/black"/>
+
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/ic_attachmentIv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_attachment"
+                    android:layout_weight="3"
+                    app:tint="@color/black"
+                    android:padding="4dp"/>
+
+                <ImageView
+                    android:id="@+id/cameraAttachmentIv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/baseline_camera_alt_24"
+                    android:layout_weight="3"
+                    app:tint="@color/black"
+                    android:padding="4dp"/>
+
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/ic_sendIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_send"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bg_shape"
+            app:tint="@color/black"
+            android:backgroundTint="@color/white"
+            android:padding="12dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="9dp"/>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

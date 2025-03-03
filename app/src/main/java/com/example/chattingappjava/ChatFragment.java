@@ -1,5 +1,6 @@
 package com.example.chattingappjava;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -50,6 +51,7 @@ public class ChatFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
 
         Query query = firebaseFirestore.collection("Users");
+//        Query query1 = firebaseFirestore.collection("Users").whereNotEqualTo("uid",firebaseAuth.getUid());
         FirestoreRecyclerOptions<firabaseModel> allUserName = new FirestoreRecyclerOptions.Builder<firabaseModel>().setQuery(query,firabaseModel.class).build();
 
         chatAdapter = new FirestoreRecyclerAdapter<firabaseModel, NoteViewHolder>(allUserName) {
@@ -71,7 +73,15 @@ public class ChatFragment extends Fragment {
                holder.itemView.setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View v) {
+
+                       Intent intent = new Intent(getActivity(), SpecificChatActivity.class);
+                       intent.putExtra("name",model.getName());
+                       intent.putExtra("receiverId",model.getUid());
+                       intent.putExtra("imageUrl",model.getImage());
+                       startActivity(intent);
                        Toast.makeText(getActivity(), "ItemView get Clicked", Toast.LENGTH_SHORT).show();
+
+
                    }
                });
             }
@@ -92,6 +102,7 @@ public class ChatFragment extends Fragment {
 //        recyclerView.setLayoutManager(linearLayoutManager);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
+        gridLayoutManager.setSmoothScrollbarEnabled(true);
         recyclerView.setLayoutManager(gridLayoutManager);
 
 

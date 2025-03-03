@@ -34,9 +34,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 public class ChattingActivity2 extends AppCompatActivity {
 
@@ -72,6 +74,16 @@ public class ChattingActivity2 extends AppCompatActivity {
             return insets;
         });
 
+        userProfileIv = findViewById(R.id.userProfileIv2);
+        toolbarBackBtn = findViewById(R.id.toolbarBackBtn);
+        userName = findViewById(R.id.userName);
+
+        tabLayout = findViewById(R.id.tabLayout);
+//        chat = findViewById(R.id.chatItem);
+//        bot = findViewById(R.id.botItem);
+        viewPager = findViewById(R.id.viewPager);
+//        toolbar = findViewById(R.id.toobar);
+
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -83,16 +95,17 @@ public class ChattingActivity2 extends AppCompatActivity {
         storageReference.child("Images").child(firebaseAuth.getUid()).child("Profile Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
+
                 imageUrlAccessToken = uri.toString();
 
-                Glide.with(ChattingActivity2.this)
-                        .load(uri)
-                        .placeholder(R.drawable.person)
-                        .into(userProfileIv);
-
-//                Picasso.get()
+//                Glide.with(ChattingActivity2.this)
 //                        .load(uri)
-//                        .into(binding.profileImage);
+//                        .placeholder(R.drawable.person)
+//                        .into(userProfileIv);
+
+                Picasso.get()
+                        .load(uri)
+                        .into(userProfileIv);
 
             }
         });
@@ -111,15 +124,7 @@ public class ChattingActivity2 extends AppCompatActivity {
             }
         });
 
-        tabLayout = findViewById(R.id.tabLayout);
-//        chat = findViewById(R.id.chatItem);
-//        bot = findViewById(R.id.botItem);
-        viewPager = findViewById(R.id.viewPager);
-//        toolbar = findViewById(R.id.toobar);
 
-        userProfileIv = findViewById(R.id.userProfileIv);
-        toolbarBackBtn = findViewById(R.id.toolbarBackBtn);
-        userName = findViewById(R.id.userName);
 
         userProfileIv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,5 +198,29 @@ public class ChattingActivity2 extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_item,menu);
         return true;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        DocumentReference documentReference = firebaseFirestore.collection("Users").document(firebaseAuth.getUid());
+        documentReference.update("status","Offline").addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(ChattingActivity2.this, "User is Offline..", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        DocumentReference documentReference = firebaseFirestore.collection("Users").document(firebaseAuth.getUid());
+        documentReference.update("status","Online").addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(ChattingActivity2.this, "User is Online..", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

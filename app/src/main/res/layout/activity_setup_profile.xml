@@ -84,14 +84,23 @@
             android:layout_marginTop="50dp"
             android:layout_centerHorizontal="true">
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/getUserImage"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    app:cardCornerRadius="150dp"
+                    android:layout_centerHorizontal="true">
+
             <!--ShapeableImageView: to show image picked from Camera/Gallery or from Database -->
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/profileIv"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/person"/>
+
+                </androidx.cardview.widget.CardView>
 
             <!--FloatingActionButton: to pick image from Camera/Gallery-->
             <com.google.android.material.floatingactionbutton.FloatingActionButton

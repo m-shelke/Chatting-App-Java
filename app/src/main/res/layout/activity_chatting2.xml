@@ -6,6 +6,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:layout_gravity="center_horizontal"
     tools:context=".ChattingActivity2">
 
 <!--    <androidx.appcompat.widget.Toolbar-->
@@ -126,7 +128,7 @@
 
         <!--ImageButton: Delete the Ads (Show this button only if the Ads is by the Current Users)-->
         <ImageButton
-            android:id="@+id/userProfileIv"
+            android:id="@+id/userProfileIv2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/person"
@@ -154,8 +156,10 @@
     <!--ViewPager2: To show/swipe fragment CartWishListFragment,CardShopListFragment-->
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
+        android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_centerInParent="true"
         android:layout_below="@id/tabLayout"/>
 
 
