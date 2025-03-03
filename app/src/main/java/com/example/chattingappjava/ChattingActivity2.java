@@ -3,10 +3,15 @@ package com.example.chattingappjava;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -18,16 +23,43 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
+import com.example.chattingappjava.databinding.ActivityEditProfileBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class ChattingActivity2 extends AppCompatActivity {
+
+
+    UserProfileModel userProfileModel;
+
+    FirebaseAuth firebaseAuth;
+    FirebaseDatabase firebaseDatabase;
+    FirebaseFirestore firebaseFirestore;
+    FirebaseStorage firebaseStorage;
+    StorageReference storageReference;
+    private String imageUrlAccessToken;
+
+
 
     TabLayout tabLayout;
     TabItem chat,bot;
     ViewPager  viewPager;
     PagerAdapter pagerAdapter;
     androidx.appcompat.widget.Toolbar toolbar;
+    TextView userName;
+
+    ImageButton userProfileIv,toolbarBackBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,19 +72,83 @@ public class ChattingActivity2 extends AppCompatActivity {
             return insets;
         });
 
+
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseStorage = FirebaseStorage.getInstance();
+
+
+        storageReference = firebaseStorage.getReference();
+        storageReference.child("Images").child(firebaseAuth.getUid()).child("Profile Pic").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                imageUrlAccessToken = uri.toString();
+
+                Glide.with(ChattingActivity2.this)
+                        .load(uri)
+                        .placeholder(R.drawable.person)
+                        .into(userProfileIv);
+
+//                Picasso.get()
+//                        .load(uri)
+//                        .into(binding.profileImage);
+
+            }
+        });
+
+        DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userProfileModel = snapshot.getValue(UserProfileModel.class);
+                userName.setText(userProfileModel.getUserName());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(ChattingActivity2.this, "Failed To Fetch Info..!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         tabLayout = findViewById(R.id.tabLayout);
-        chat = findViewById(R.id.chatItem);
-        bot = findViewById(R.id.botItem);
+//        chat = findViewById(R.id.chatItem);
+//        bot = findViewById(R.id.botItem);
         viewPager = findViewById(R.id.viewPager);
-        toolbar = findViewById(R.id.toobar);
+//        toolbar = findViewById(R.id.toobar);
+
+        userProfileIv = findViewById(R.id.userProfileIv);
+        toolbarBackBtn = findViewById(R.id.toolbarBackBtn);
+        userName = findViewById(R.id.userName);
+
+        userProfileIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ChattingActivity2.this,EditProfileActivity.class));
+            }
+        });
+
+        toolbarBackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
+
+        //add the tabs to TabLayout
+        tabLayout.addTab(tabLayout.newTab().setText("Chat"));
+        tabLayout.addTab(tabLayout.newTab().setText("Bot"));
+
 
         setSupportActionBar(toolbar);
 
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
 
-        Drawable drawable = ContextCompat.getDrawable(getApplicationContext(),R.drawable.baseline_more_vert_24);
-        toolbar.setOverflowIcon(drawable);
+//        Drawable drawable = ContextCompat.getDrawable(getApplicationContext(),R.drawable.baseline_more_vert_24);
+//        toolbar.setOverflowIcon(drawable);
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -76,6 +172,8 @@ public class ChattingActivity2 extends AppCompatActivity {
         });
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+
 
     }
 

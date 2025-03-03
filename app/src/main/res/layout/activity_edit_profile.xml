@@ -16,14 +16,13 @@
 
         <!-- ImageView: click to go back-->
         <ImageButton
-            android:id="@+id/backBtn"
+            android:id="@+id/toolbarBackBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_arrow_back_ios_24"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="6dp"
-            android:background="@android:color/transparent"
-            android:padding="10dp"/>
+            android:layout_marginLeft="15dp"
+            android:background="@android:color/transparent"/>
 
         <!-- TextViw-To show toolbar title -->
         <TextView
@@ -32,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_toEndOf="@id/backBtn"
+            android:layout_toEndOf="@id/toolbarBackBtn"
             android:text="Profile Section"
             android:textStyle="bold|normal"/>
 

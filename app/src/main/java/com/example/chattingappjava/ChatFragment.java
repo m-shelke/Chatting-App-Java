@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,6 +38,8 @@ public class ChatFragment extends Fragment {
 
     FirestoreRecyclerAdapter<firabaseModel,NoteViewHolder> chatAdapter;
 
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,7 +63,7 @@ public class ChatFragment extends Fragment {
 
                if (model.getStatus().equals("Online")){
                    holder.statusOfUser.setText(model.getStatus());
-                   holder.statusOfUser.setTextColor(Color.GREEN);
+                   holder.statusOfUser.setTextColor(Color.BLACK);
                }else {
                    holder.statusOfUser.setText(model.getStatus());
                }
@@ -82,9 +85,16 @@ public class ChatFragment extends Fragment {
         };
 
         recyclerView.setHasFixedSize(true);
-        linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
+
+
+//        linearLayoutManager = new LinearLayoutManager(getContext());
+//        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+//        recyclerView.setLayoutManager(linearLayoutManager);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
+        recyclerView.setLayoutManager(gridLayoutManager);
+
+
         recyclerView.setAdapter(chatAdapter);
 
         return view;
