@@ -2,6 +2,7 @@ package com.example.chattingappjava;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hbb20.CountryCodePicker;
+import com.mukeshsolanki.OtpView;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private PhoneAuthProvider.ForceResendingToken forceResendingToken;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks Callbacks;
     private String VerificationId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,11 +172,13 @@ public class MainActivity extends AppCompatActivity {
                 progressDialog.dismiss();
 
                 binding.phoneInputRl.setVisibility(View.INVISIBLE);
+                binding.animatin.setVisibility(View.GONE);
                 binding.optInputRl.setVisibility(View.VISIBLE);
+                binding.otpGif.setVisibility(View.VISIBLE);
 
                 Toast.makeText(MainActivity.this, "OTP Send To "+phoneNumberWithCode, Toast.LENGTH_SHORT).show();
 
-                binding.verificatinTv.setText("Please enter the Verification Code sent to the "+phoneNumberWithCode);
+                binding.verificatinTv.setText("Verify: "+phoneNumberWithCode);
             }
         };
 

@@ -8,16 +8,31 @@
     tools:context=".SplashScreenActivity"
     android:background="@color/white">
 
-    <ImageView
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifCelebration"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent"
+        android:src="@drawable/three_friends"
         android:layout_centerInParent="true"
-        android:src="@mipmap/ic_launcher"/>
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Employee's Chat App"
+        android:textStyle="bold|normal"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:layout_below="@id/gifCelebration"
+        android:textColor="#6864F6"/>
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="From"
+        android:text="Associate With"
         android:textColor="@color/black"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/maintext"
@@ -27,7 +42,7 @@
         android:id="@+id/maintext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tech Project"
+        android:text="US Technologis Pvt Ltd."
         android:textStyle="bold"
         android:textSize="18sp"
         android:layout_alignParentBottom="true"

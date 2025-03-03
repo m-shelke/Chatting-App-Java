@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class SplashScreenActivity extends AppCompatActivity {
 
 //    Splash Timer/Delay
-    private static int SPLASH_TIMER = 3000;
+    private static int SPLASH_TIMER = 2700;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
